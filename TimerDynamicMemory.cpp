@@ -31,6 +31,7 @@ unsigned long currentMillis = 0;
 
 TimerDynamicMemory::TimerDynamicMemory() {
    currentMillis = elapsed();
+   numTimers = 0;
 }
 
 void TimerDynamicMemory::run() {
@@ -107,7 +108,6 @@ int TimerDynamicMemory::checkTimerFree() {
 
 // Create slot timer malloc and realloc. Return -1 if not found
 int TimerDynamicMemory::createTimerSlot() {
-    int i=0;
 	
 	if(numTimers == 0)
 	{
@@ -126,9 +126,9 @@ int TimerDynamicMemory::createTimerSlot() {
 	  memset(&pRecTimer[numTimers],sizeof(recTimer),0);
    }
 
-   // setto campi
+   // setto alcuni campi gli altri gia messi tutti a zero
+   pRecTimer[numTimers].enabled = false;
    pRecTimer[numTimers].prev_millis = currentMillis;
-   pRecTimer[numTimers].callbacks = 0;
    
    numTimers++;
 

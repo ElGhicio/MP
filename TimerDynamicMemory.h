@@ -101,16 +101,16 @@ private:
 	// check first timer free
 	int checkTimerFree();
 
-    int numTimers = 0;
+    int numTimers;
 	
 	typedef struct rectimer {
-      boolean enabled = false;
+      boolean enabled;
       timer_callback callbacks;                   // if the callback pointer is zero, the slot is free, i.e. doesn't "contain" any timer
-      unsigned long prev_millis = 0;
-      byte numRuns = 0;    // max 255
-      byte maxNumRuns = 0; // max 255
-	  long delays=0;        
-	  byte toBeCalled=0;   // max 255
+      unsigned long prev_millis;
+      byte numRuns;    // max 255
+      byte maxNumRuns; // max 255
+	  unsigned long long delays;        
+	  byte toBeCalled;   // max 255
     }recTimer;
 	
 	rectimer *pRecTimer = NULL;
